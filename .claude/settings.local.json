@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -oP '\"[^\"]{3,200}\"' \"D:/twisha-harsh-wedding/js/index-BBIwAgSn.js\")",
+      "Bash(grep -oP '\"[^\"]{3,300}\"' \"D:/twisha-harsh-wedding/js/index-BBIwAgSn.js\")",
+      "Bash(grep -oP '\"[^\"]{2,200}\"' \"D:/twisha-harsh-wedding/js/index-BBIwAgSn.js\")",
+      "Bash(grep -oP '\"[^\"]{2,300}\"' \"D:/twisha-harsh-wedding/js/index-BBIwAgSn.js\")",
+      "Bash(python3:*)",
+      "Bash(node:*)"
+    ]
+  }
+}
