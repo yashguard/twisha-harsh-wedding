@@ -15,7 +15,8 @@
       "Bash(grep -o \".\\\\{0,150\\\\}currentSection\\\\|activeSect\\\\|sectionIndex\\\\|step\\\\|phase\\\\|stage\\\\|curtainDone\\\\|revealDone\\\\|scratchDone\\\\|completed\\\\|allCompleted.\\\\{0,150\\\\}\" D:/twisha-harsh-wedding/js/index-BBIwAgSn.js)",
       "Bash(grep -o \".\\\\{0,100\\\\}\\\\\"curtain\\\\\"\\\\|\\\\\"scratch\\\\\"\\\\|\\\\\"reveal\\\\\"\\\\|\\\\\"countdown\\\\\".\\\\{0,100\\\\}\" D:/twisha-harsh-wedding/js/index-BBIwAgSn.js)",
       "Bash(grep -o \".\\\\{0,80\\\\}curtain\\\\|reveal\\\\|scratch.\\\\{0,80\\\\}\" D:/twisha-harsh-wedding/js/index-BBIwAgSn.js)",
-      "Bash(grep -o \".\\\\{0,200\\\\}scratch-gold.\\\\{0,200\\\\}\" D:/twisha-harsh-wedding/js/index-BBIwAgSn.js)"
+      "Bash(grep -o \".\\\\{0,200\\\\}scratch-gold.\\\\{0,200\\\\}\" D:/twisha-harsh-wedding/js/index-BBIwAgSn.js)",
+      "Bash(git:*)"
     ]
   }
 }
