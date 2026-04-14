@@ -713,6 +713,10 @@
             }
         }
 
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
         @media (prefers-reduced-motion) {
 
             [data-sonner-toast],
@@ -826,9 +830,13 @@
                         Tap to continue
                     </p>
                 </div>
-                <video class="absolute inset-0 w-full h-full object-cover hidden" playsinline="" preload="auto"
+                <video id="curtain-video" class="absolute inset-0 w-full h-full object-cover hidden" playsinline=""
+                    preload="metadata" poster="assets/curtain-closed-Bpkadld4.jpg"
                     src="assets/curtain-video-BAKLj3Y5.mp4">
                 </video>
+                <div id="curtain-spinner" style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;z-index:10;pointer-events:none;">
+                    <div style="width:44px;height:44px;border-radius:50%;border:3px solid rgba(255,255,255,0.3);border-top-color:white;animation:spin 0.75s linear infinite;"></div>
+                </div>
             </section>
             <section class="flex flex-col items-center justify-center py-12 px-8"
                 style="background-color: rgb(250, 248, 245);">
@@ -1414,6 +1422,55 @@
             </footer>
         </main>
     </div>
+    <script>
+        (function () {
+            var video = document.getElementById('curtain-video');
+            var spinner = document.getElementById('curtain-spinner');
+            if (!video || !spinner) return;
+
+            // Layer 2 — idle buffering: once the browser has free cycles, switch to
+            // preload="auto" so the file starts downloading silently in the background.
+            function startBuffer() {
+                if (video.readyState === 0) {
+                    video.preload = 'auto';
+                }
+            }
+            if ('requestIdleCallback' in window) {
+                requestIdleCallback(startBuffer);
+            } else {
+                setTimeout(startBuffer, 1000);
+            }
+
+            // Layer 4+5 — tap handler: if enough is buffered play at once,
+            // otherwise show a white ring spinner and play the moment canplay fires.
+            var section = video.closest('section');
+            if (!section) return;
+
+            section.addEventListener('click', function onTap() {
+                section.removeEventListener('click', onTap);
+
+                if (video.readyState >= 3) {
+                    // Enough data buffered — React's own handler will call play().
+                    return;
+                }
+
+                // Not ready yet: ensure download is running, then show spinner.
+                if (video.preload !== 'auto') {
+                    video.preload = 'auto';
+                }
+                spinner.style.display = 'flex';
+
+                video.addEventListener('canplay', function onCanPlay() {
+                    video.removeEventListener('canplay', onCanPlay);
+                    spinner.style.display = 'none';
+                    // React handler has already called play(); if it rejected
+                    // (common on iOS when not ready) retry now inside the same
+                    // user-gesture microtask chain.
+                    video.play().catch(function () { });
+                });
+            }, { capture: true });
+        })();
+    </script>
 </body>
 
 </html>
