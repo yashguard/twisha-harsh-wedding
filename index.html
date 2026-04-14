@@ -35,6 +35,7 @@
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="assets/favicon-th.svg" />
     <link rel="apple-touch-icon" href="assets/favicon-th.svg" />
+    <link rel="preload" as="video" href="assets/curtain-video-BAKLj3Y5.mp4" type="video/mp4" fetchpriority="high" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
     <link
@@ -831,7 +832,7 @@
                     </p>
                 </div>
                 <video id="curtain-video" class="absolute inset-0 w-full h-full object-cover hidden" playsinline=""
-                    preload="metadata" poster="assets/curtain-closed-Bpkadld4.jpg"
+                    preload="auto" poster="assets/curtain-closed-Bpkadld4.jpg"
                     src="assets/curtain-video-BAKLj3Y5.mp4">
                 </video>
                 <div id="curtain-spinner" style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;z-index:10;pointer-events:none;">
@@ -1428,21 +1429,11 @@
             var spinner = document.getElementById('curtain-spinner');
             if (!video || !spinner) return;
 
-            // Layer 2 — idle buffering: once the browser has free cycles, switch to
-            // preload="auto" so the file starts downloading silently in the background.
-            function startBuffer() {
-                if (video.readyState === 0) {
-                    video.preload = 'auto';
-                }
-            }
-            if ('requestIdleCallback' in window) {
-                requestIdleCallback(startBuffer);
-            } else {
-                setTimeout(startBuffer, 1000);
-            }
+            // video already has preload="auto" + a <link rel="preload"> in <head>,
+            // so the browser starts downloading immediately — no idle-callback needed.
 
-            // Layer 4+5 — tap handler: if enough is buffered play at once,
-            // otherwise show a white ring spinner and play the moment canplay fires.
+            // Tap handler: play at once if buffered, otherwise show spinner and
+            // retry the moment canplaythrough fires (more data than canplay).
             var section = video.closest('section');
             if (!section) return;
 
@@ -1450,23 +1441,35 @@
                 section.removeEventListener('click', onTap);
 
                 if (video.readyState >= 3) {
-                    // Enough data buffered — React's own handler will call play().
+                    // Enough data — React's own handler will call play().
                     return;
                 }
 
-                // Not ready yet: ensure download is running, then show spinner.
-                if (video.preload !== 'auto') {
-                    video.preload = 'auto';
-                }
+                // Still loading: show spinner, then play as soon as enough is buffered.
                 spinner.style.display = 'flex';
 
-                video.addEventListener('canplay', function onCanPlay() {
-                    video.removeEventListener('canplay', onCanPlay);
+                var played = false;
+                function tryPlay() {
+                    if (played) return;
+                    played = true;
                     spinner.style.display = 'none';
-                    // React handler has already called play(); if it rejected
-                    // (common on iOS when not ready) retry now inside the same
-                    // user-gesture microtask chain.
                     video.play().catch(function () { });
+                }
+
+                video.addEventListener('canplaythrough', function onThrough() {
+                    video.removeEventListener('canplaythrough', onThrough);
+                    video.removeEventListener('canplay', onReady);
+                    tryPlay();
+                });
+
+                // Fallback: canplay fires sooner — use it if canplaythrough is slow.
+                video.addEventListener('canplay', function onReady() {
+                    video.removeEventListener('canplay', onReady);
+                    // Give canplaythrough 200 ms to fire first for a smoother start.
+                    setTimeout(function () {
+                        video.removeEventListener('canplaythrough', function () { });
+                        tryPlay();
+                    }, 200);
                 });
             }, { capture: true });
         })();
