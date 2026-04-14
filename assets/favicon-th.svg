@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&amp;display=swap');
+    </style>
+  </defs>
+  <!-- Background circle -->
+  <circle cx="50" cy="50" r="50" fill="#5C2018"/>
+  <!-- Decorative outer ring -->
+  <circle cx="50" cy="50" r="44" fill="none" stroke="#C9A96E" stroke-width="1.2"/>
+  <!-- Main text: T&H -->
+  <text
+    x="50"
+    y="57"
+    text-anchor="middle"
+    font-family="Cormorant Garamond, Georgia, serif"
+    font-size="32"
+    font-weight="600"
+    letter-spacing="2"
+    fill="#FAF8F5">T&amp;H</text>
+</svg>

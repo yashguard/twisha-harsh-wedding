@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&amp;family=Great+Vibes&amp;display=swap');
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#FAF8F5"/>
+
+  <!-- Decorative border outer -->
+  <rect x="24" y="24" width="1152" height="582" fill="none" stroke="#5C2018" stroke-width="1.5"/>
+  <!-- Decorative border inner -->
+  <rect x="36" y="36" width="1128" height="558" fill="none" stroke="#C9A96E" stroke-width="0.8"/>
+
+  <!-- Corner ornaments -->
+  <g fill="#C9A96E">
+    <!-- Top-left -->
+    <circle cx="36" cy="36" r="4"/>
+    <line x1="36" y1="44" x2="36" y2="70" stroke="#C9A96E" stroke-width="1"/>
+    <line x1="44" y1="36" x2="70" y2="36" stroke="#C9A96E" stroke-width="1"/>
+    <!-- Top-right -->
+    <circle cx="1164" cy="36" r="4"/>
+    <line x1="1164" y1="44" x2="1164" y2="70" stroke="#C9A96E" stroke-width="1"/>
+    <line x1="1156" y1="36" x2="1130" y2="36" stroke="#C9A96E" stroke-width="1"/>
+    <!-- Bottom-left -->
+    <circle cx="36" cy="594" r="4"/>
+    <line x1="36" y1="586" x2="36" y2="560" stroke="#C9A96E" stroke-width="1"/>
+    <line x1="44" y1="594" x2="70" y2="594" stroke="#C9A96E" stroke-width="1"/>
+    <!-- Bottom-right -->
+    <circle cx="1164" cy="594" r="4"/>
+    <line x1="1164" y1="586" x2="1164" y2="560" stroke="#C9A96E" stroke-width="1"/>
+    <line x1="1156" y1="594" x2="1130" y2="594" stroke="#C9A96E" stroke-width="1"/>
+  </g>
+
+  <!-- Top label -->
+  <text x="600" y="120"
+    text-anchor="middle"
+    font-family="Cormorant Garamond, Georgia, serif"
+    font-size="18"
+    font-weight="400"
+    letter-spacing="8"
+    fill="#5C2018"
+    opacity="0.7">YOU ARE CORDIALLY INVITED</text>
+
+  <!-- Decorative line left -->
+  <line x1="200" y1="140" x2="520" y2="140" stroke="#C9A96E" stroke-width="0.8"/>
+  <!-- Center diamond -->
+  <polygon points="600,133 608,140 600,147 592,140" fill="#C9A96E"/>
+  <!-- Decorative line right -->
+  <line x1="680" y1="140" x2="1000" y2="140" stroke="#C9A96E" stroke-width="0.8"/>
+
+  <!-- Main monogram T & H -->
+  <text x="600" y="310"
+    text-anchor="middle"
+    font-family="Cormorant Garamond, Georgia, serif"
+    font-size="200"
+    font-weight="600"
+    letter-spacing="10"
+    fill="#5C2018">T &amp; H</text>
+
+  <!-- Decorative line left -->
+  <line x1="200" y1="370" x2="460" y2="370" stroke="#C9A96E" stroke-width="0.8"/>
+  <!-- Center diamond -->
+  <polygon points="600,363 608,370 600,377 592,370" fill="#C9A96E"/>
+  <!-- Decorative line right -->
+  <line x1="740" y1="370" x2="1000" y2="370" stroke="#C9A96E" stroke-width="0.8"/>
+
+  <!-- Full names in script style -->
+  <text x="600" y="445"
+    text-anchor="middle"
+    font-family="Georgia, serif"
+    font-size="42"
+    font-style="italic"
+    font-weight="400"
+    fill="#5C2018">Twisha &amp; Harsh</text>
+
+  <!-- Wedding date -->
+  <text x="600" y="510"
+    text-anchor="middle"
+    font-family="Cormorant Garamond, Georgia, serif"
+    font-size="22"
+    font-weight="400"
+    letter-spacing="6"
+    fill="#5C2018"
+    opacity="0.8">10 MAY 2026</text>
+
+  <!-- Venue -->
+  <text x="600" y="548"
+    text-anchor="middle"
+    font-family="Cormorant Garamond, Georgia, serif"
+    font-size="16"
+    font-weight="400"
+    letter-spacing="4"
+    fill="#5C2018"
+    opacity="0.6">SURAT, GUJARAT</text>
+</svg>
